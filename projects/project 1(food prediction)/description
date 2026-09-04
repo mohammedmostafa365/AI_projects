@@ -1,24 +1,103 @@
+# Food Waste Prediction
+
+A Machine Learning project for predicting daily food waste in kilograms using operational food service data.
+
+The project focuses on working with a deliberately messy dataset and applying a complete data preprocessing and machine learning workflow.
+
+---
+
 ## Dataset
 
-**Source:** Kaggle — Messy Food Waste Prediction Dataset
-**Link:** https://www.kaggle.com/competitions/messy-food-waste-prediction-dataset/data
-**Size:** ~900 rows (train + test split)
+Source: Kaggle — Messy Food Waste Prediction Dataset
 
-**Description:**
-A deliberately messy dataset designed to challenge data cleaning and preprocessing skills.
-It simulates operational data from a food service environment, where the goal is to predict
-the amount of food wasted (in kg) per day based on factors such as the number of meals served,
-staff experience level, waste category, and date information.
+Dataset size: ~900 records across the training and test sets.
 
-**Key Columns:**
-- `date` — date of the record (requires parsing and feature extraction)
-- `meals_served` — number of meals served that day
-- `staff_experience` — experience level of staff (categorical, contains missing values)
-- `waste_category` — type/category of food waste (categorical)
-- `food_waste_kg` — target variable, amount of food wasted in kilograms
+The dataset represents operational data from a food service environment. The objective is to predict the amount of food wasted per day based on factors such as meals served, staff experience, waste category, and date information.
 
-**Challenges:**
-- Missing values in categorical columns
+---
+
+## Objective
+
+Predict:
+
+`food_waste_kg`
+
+The target represents the amount of food waste generated in kilograms per day.
+
+---
+
+## Features
+
+| Feature | Description | Type |
+|---|---|---|
+| `date` | Date of the record | Date |
+| `meals_served` | Number of meals served during the day | Numerical |
+| `staff_experience` | Experience level of the staff | Categorical |
+| `waste_category` | Category of food waste | Categorical |
+| `food_waste_kg` | Amount of food wasted in kg | Target |
+
+---
+
+## Data Challenges
+
+This dataset was designed to simulate real-world messy data.
+
+The main challenges include:
+
+- Missing values in categorical features
 - Outliers in numerical features
-- Mixed data types requiring conversion
-- Date column requiring decomposition into year, month, and day features
+- Mixed data types
+- Inconsistent categorical values
+- Date values requiring preprocessing
+- Features requiring transformation before modeling
+
+---
+
+## Data Preprocessing
+
+The preprocessing pipeline includes:
+
+### Missing Values
+
+Missing categorical values are handled using appropriate imputation techniques.
+
+### Categorical Data
+
+Categorical values are cleaned and transformed into numerical representations suitable for machine learning models.
+
+### Date Processing
+
+The `date` column is parsed and decomposed into useful features such as:
+
+- Year
+- Month
+- Day
+
+### Outlier Handling
+
+Numerical features are inspected for unusual values and potential outliers.
+
+---
+
+## Machine Learning Workflow
+
+The project follows a complete machine learning workflow:
+
+```text
+Raw Dataset
+     ↓
+Data Inspection
+     ↓
+Data Cleaning
+     ↓
+Exploratory Data Analysis
+     ↓
+Feature Engineering
+     ↓
+Feature Selection
+     ↓
+Model Training
+     ↓
+Model Evaluation
+     ↓
+Prediction
