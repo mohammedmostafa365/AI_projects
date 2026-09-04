@@ -1,1 +1,24 @@
+## Dataset
 
+**Source:** Kaggle — Messy Food Waste Prediction Dataset
+**Link:** https://www.kaggle.com/competitions/messy-food-waste-prediction-dataset/data
+**Size:** ~900 rows (train + test split)
+
+**Description:**
+A deliberately messy dataset designed to challenge data cleaning and preprocessing skills.
+It simulates operational data from a food service environment, where the goal is to predict
+the amount of food wasted (in kg) per day based on factors such as the number of meals served,
+staff experience level, waste category, and date information.
+
+**Key Columns:**
+- `date` — date of the record (requires parsing and feature extraction)
+- `meals_served` — number of meals served that day
+- `staff_experience` — experience level of staff (categorical, contains missing values)
+- `waste_category` — type/category of food waste (categorical)
+- `food_waste_kg` — target variable, amount of food wasted in kilograms
+
+**Challenges:**
+- Missing values in categorical columns
+- Outliers in numerical features
+- Mixed data types requiring conversion
+- Date column requiring decomposition into year, month, and day features
