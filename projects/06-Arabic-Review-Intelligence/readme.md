@@ -10,7 +10,7 @@ and three classifiers — compared systematically to find the best combination.
 
 **Task:** 3-class sentiment classification — Positive / Negative / Mixed  
 **Dataset:** 100,000 Arabic reviews, perfectly balanced across all three classes  
-**Source:** [Arabic Reviews Dataset — Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
+**Source:** [Arabic Reviews Dataset — Kaggle](https://www.kaggle.com/datasets/abedkhooli/arabic-100k-reviews)
 
 ---
 
