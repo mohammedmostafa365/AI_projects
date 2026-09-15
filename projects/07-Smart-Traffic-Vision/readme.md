@@ -1,4 +1,3 @@
-
 # Day 7 — Smart Traffic Vision
 
 > **AI Advanced Ahmed Yousrey Course — 10-Day Practical Milestone**
@@ -9,7 +8,7 @@
 
 A deep learning pipeline for classifying traffic signs using the **GTSRB (German Traffic Sign Recognition Benchmark)** dataset — 43 classes and ~39,000 training images.
 
-The project covers the full CNN workflow from raw image loading to transfer learning fine-tuning, with a direct comparison between a custom-built CNN and a pretrained MobileNetV2 model.
+The project covers the full CNN workflow from raw image loading to evaluation, with a custom-built CNN trained from scratch and analyzed with per-class metrics, a confusion matrix, and error analysis.
 
 ---
 
@@ -17,8 +16,8 @@ The project covers the full CNN workflow from raw image loading to transfer lear
 
 - Build and train a **CNN from scratch** using TensorFlow/Keras
 - Apply **image preprocessing** and **data augmentation** for generalization
-- Implement **transfer learning** with MobileNetV2 (feature extraction + fine-tuning)
-- Evaluate and compare both models with accuracy curves and a confusion matrix
+- Handle **class imbalance** with class weights during training
+- Evaluate the model with accuracy curves and a confusion matrix
 - Perform **error analysis** on misclassified samples
 
 ---
@@ -61,8 +60,6 @@ Augmentation — rotation, zoom, shift, brightness (training only)
     ↓
 CNN from Scratch — 3 conv blocks, BatchNorm, Dropout
     ↓
-Transfer Learning — MobileNetV2 (Phase 1: frozen → Phase 2: fine-tune)
-    ↓
 Evaluation — accuracy curves, confusion matrix, error analysis
     ↓
 Save Models
@@ -70,9 +67,7 @@ Save Models
 
 ---
 
-## Models
-
-### CNN from Scratch
+## Model — CNN from Scratch
 
 | Layer Block | Details |
 |---|---|
@@ -81,12 +76,7 @@ Save Models
 | Block 3 | Conv2D(128) → BatchNorm → MaxPool → Dropout(0.3) |
 | Head | Flatten → Dense(256) → BatchNorm → Dropout(0.5) → Dense(43, softmax) |
 
-### Transfer Learning — MobileNetV2
-
-| Phase | Description |
-|---|---|
-| Phase 1 | Base frozen, only classification head trained (LR = 1e-3) |
-| Phase 2 | Top 30 base layers unfrozen, full fine-tuning (LR = 1e-5) |
+**Training setup:** Adam (LR = 1e-3) + categorical cross-entropy, 30 epochs, class weights, EarlyStopping (patience = 5, restores best weights) and ReduceLROnPlateau (factor = 0.5).
 
 ---
 
@@ -95,22 +85,20 @@ Save Models
 | Model | Best Validation Accuracy |
 |---|---|
 | CNN from Scratch | ~88–92% |
-| MobileNetV2 — Feature Extraction | ~93–96% |
-| MobileNetV2 — Fine-Tuned | ~96–98% |
 
 ---
 
 ## Key Takeaways
 
-1. **Transfer learning dominates** — MobileNetV2's ImageNet features generalize well to traffic signs, reaching higher accuracy faster than any custom CNN.
+1. **A scratch CNN is a strong baseline** — With only 3 conv blocks plus BatchNorm and Dropout, the model reaches ~88–92% validation accuracy on GTSRB, proving that a well-regularized CNN can learn traffic-sign recognition from raw pixels alone.
 
-2. **Two-phase fine-tuning is essential** — Training the head first stabilizes weights before unfreezing the backbone. Skipping this risks destroying pretrained features.
+2. **Regularization controls overfitting** — Tracking the gap between training and validation accuracy shows where the model starts memorizing; BatchNorm, Dropout, and early stopping keep that gap under control.
 
 3. **Class imbalance must be addressed** — Without class weights, the model ignores minority classes. Weighting ensures every class gets equal learning pressure.
 
 4. **Augmentation must be domain-aware** — Horizontal flipping was intentionally excluded because it changes the semantic meaning of directional signs.
 
-5. **CNNs learn hierarchically** — Shallow layers detect edges, middle layers detect shapes, deep layers detect full sign structures. This hierarchy is why transfer learning works.
+5. **CNNs learn hierarchically** — Shallow layers detect edges, middle layers detect shapes, deep layers detect full sign structures.
 
 ---
 
@@ -119,7 +107,6 @@ Save Models
 | Tool | Purpose |
 |---|---|
 | TensorFlow / Keras | Model building and training |
-| MobileNetV2 | Pretrained backbone for transfer learning |
 | ImageDataGenerator | Preprocessing and augmentation pipeline |
 | PIL / Matplotlib | Image loading and visualization |
 | scikit-learn | Classification report and confusion matrix |
@@ -132,7 +119,7 @@ Save Models
 1. Open the notebook in **Kaggle** (GPU accelerator recommended)
 2. Attach the GTSRB dataset: `meowmeowmeowmeowmeow/gtsrb-german-traffic-sign`
 3. Run all cells in order
-4. Models are saved as `.keras` files at the end
+4. The model is saved as a `.keras` file at the end
 
 ---
 
