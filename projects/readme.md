@@ -1,5 +1,3 @@
-
-
 # Advanced AI Practical Milestone 🚀
 
 A 10-day hands-on challenge to move from theoretical knowledge to real implementation across the full Machine Learning and AI stack.
@@ -21,7 +19,7 @@ The objective is to **understand what I am doing**, make independent decisions, 
 ```
 Data Analysis → Machine Learning → Advanced ML → Unsupervised Learning
 → Anomaly Detection → NLP → Neural Networks → Computer Vision
-→ RNN / LSTM / GRU → Transformers → MLflow → Deployment
+→ RNN / LSTM / GRU → Transformers → Deployment
 ```
 
 ---
@@ -92,9 +90,9 @@ Fine-tune a pre-trained Arabic transformer model (such as AraBERT) on a document
 ---
 
 ### Day 10 — AI Decision Platform
-**Concepts:** End-to-End ML · Deep Learning · NLP · MLflow · Experiment Tracking · FastAPI · Streamlit · Model Serving · Deployment
+**Concepts:** End-to-End ML · FastAPI · Streamlit · Model Serving · Deployment
 
-A complete production-style AI platform that brings together models from multiple domains, tracks experiments with MLflow, serves predictions via FastAPI, and provides a Streamlit interface for interaction.
+A complete production-style ML application that trains a model, serves predictions via FastAPI, and provides a Streamlit interface for interaction.
 
 ---
 
@@ -119,7 +117,6 @@ Problem Definition → Dataset → Data Understanding → EDA → Preprocessing
 | Machine Learning | scikit-learn |
 | Deep Learning | PyTorch |
 | NLP | NLTK · Hugging Face Transformers |
-| Experiment Tracking | MLflow |
 | Deployment | FastAPI · Streamlit |
 
 ---
