@@ -2,10 +2,7 @@
 
 ## Project Overview
 
-An end-to-end machine learning application that predicts used car prices based on
-vehicle features. This project covers the full deployment pipeline — from data
-cleaning and model training to serving predictions via a REST API and a
-interactive web interface.
+An end-to-end machine learning application that predicts used car prices based on vehicle features. This project covers the full deployment pipeline — from data cleaning and model training to serving predictions via a REST API and an interactive web interface.
 
 ## Objectives
 
@@ -16,16 +13,17 @@ interactive web interface.
 
 ## Project Structure
 
+```
 project 10 Vehicle Price Prediction/
 ├── data/
-│ └── vehicles.csv
+│   └── vehicles.csv
 ├── app/
-│ ├── model.pkl
-│ ├── main.py
-│ └── streamlit_app.py
+│   ├── model.pkl
+│   ├── main.py
+│   └── streamlit_app.py
 ├── DAY10-Vehicle-Price-Prediction.ipynb
 └── README.md
-
+```
 
 ## Dataset
 
@@ -36,8 +34,7 @@ project 10 Vehicle Price Prediction/
 ## Workflow
 
 ### 1. Data Cleaning
-- Dropped irrelevant columns: `location`, `lat`, `long`, `Listed_date`,
-  `Listed_time`, `year make model`, `re_model`, `size`
+- Dropped irrelevant columns: `location`, `lat`, `long`, `Listed_date`, `Listed_time`, `year make model`, `re_model`, `size`
 - Filled categorical nulls with `"unknown"`
 - Filled odometer nulls with median
 - Dropped rows with very few nulls in critical columns
@@ -48,8 +45,7 @@ project 10 Vehicle Price Prediction/
 
 ### 3. Feature Engineering
 - Label encoded all categorical columns
-- Final features: `condition`, `drive`, `fuel`, `odometer`, `paint_color`,
-  `title_status`, `transmission`, `type`, `cylinders`, `year`, `make`
+- Final features: `condition`, `drive`, `fuel`, `odometer`, `paint_color`, `title_status`, `transmission`, `type`, `cylinders`, `year`, `make`
 
 ### 4. Model Training
 - **Model:** Random Forest Regressor
@@ -97,16 +93,10 @@ streamlit run streamlit_app.py
 
 ## Known Limitations
 
-- Categorical features are label encoded — encoding is not saved, so new
-  categories at inference time may not map correctly
-- Several features (paint color, make, type) are hardcoded in the UI due to
-  this limitation
+- Categorical features are label encoded — encoding is not saved, so new categories at inference time may not map correctly
+- Several features (paint color, make, type) are hardcoded in the UI due to this limitation
 - Small dataset (2,466 rows after cleaning) limits model performance
 
 ## Day Summary
 
-This was the first time building a fully deployed ML application from scratch —
-no tutorials, no vibe coding. FastAPI and Streamlit were both new. The most
-important lesson is understanding the architecture: the model, the API, and the
-UI are three separate pieces that communicate with each other. This pattern
-applies to any ML deployment in the real world.
+This was the first time building a fully deployed ML application from scratch — no tutorials, no vibe coding. FastAPI and Streamlit were both new. The most important lesson is understanding the architecture: the model, the API, and the UI are three separate pieces that communicate with each other. This pattern applies to any ML deployment in the real world.
